@@ -7,7 +7,7 @@
 Public Class Form1
 
 
-
+    Public cd As cdata
 
 
     Private Sub btnTest_Click(sender As Object, e As EventArgs) Handles btnTest.Click
@@ -19,16 +19,23 @@ Public Class Form1
 
         Dim id As Int32 = 1
         Dim acq As Boolean = False
-        Dim cd As cdata
+
 
 
 
         AcquireVJD(id)
+
+        cd.LX = &H4000
+        cd.LY = &H4000
+
+        cd.RX = &H2000
+        cd.RY = &H6000
+
+
+        cd.lButtons = Val(txtButtonsVal.Text)
+
+
         UpdateVJD(id, cd)
-
-
-
-        SetAxis(&H4000, id, &H30)
 
 
 
@@ -45,15 +52,16 @@ Public Module vj
         Dim wRudder As Int32
         Dim wAileron As Int32
 
-        Dim wAxisX As Int32
-        Dim wAxisY As Int32
-        Dim wAxisZ As Int32
+        Dim LX As Int32
+        Dim LY As Int32
+        Dim LT As Int32
 
-        Dim wAxisXRot As Int32
-        Dim wAxisYRot As Int32
-        Dim wAxisZRot As Int32
+        Dim RX As Int32
+        Dim RY As Int32
+        Dim RT As Int32
 
         Dim wSlider As Int32
+        Dim wDial As Int32
         Dim wWheel As Int32
 
         Dim wAxisVX As Int32
@@ -65,10 +73,10 @@ Public Module vj
         Dim wAxisVBRZ As Int32
 
         Dim lButtons As Int32
-        Dim bHats As Int32
-        Dim bHatsEx1 As Int32
-        Dim bHatsEx2 As Int32
-        Dim bHatsEx3 As Int32
+        Dim bHats As UInt32
+        Dim bHatsEx1 As UInt32
+        Dim bHatsEx2 As UInt32
+        Dim bHatsEx3 As UInt32
 
         Dim lButtonsEx1 As Int32
         Dim lButtonsEx2 As Int32
